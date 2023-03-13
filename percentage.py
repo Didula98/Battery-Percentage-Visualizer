@@ -13,9 +13,11 @@ print(b.power_plugged)
 print((percentage*18)//100)
 battery = ''
 
+# percentage = 10
+
 for i in range(HEIGHT):
     fillArea = (percentage*(WIDTH-2))//100
-    # fillArea = 3
+    # fillArea = 1
     for j in range(WIDTH):
         if i == 0:
             if j == 0:
@@ -57,8 +59,11 @@ for i in range(HEIGHT):
                 if fillArea != 0:
                     if isPlugged:
                         battery += "\033[42m "
+                    elif percentage <= 10:
+                        battery += "\033[41m "
                     else:
                         battery += "\033[47m "
+
                     fillArea -= 1
                 else:
                     battery += "\033[0m "
@@ -68,7 +73,7 @@ for i in range(HEIGHT):
     battery += "\n"
 
 print(battery)
-print("\033[0m")
+# print("\033[0m")
 
 print((7//2)-1)
 # notification.notify(
