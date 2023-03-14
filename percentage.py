@@ -1,24 +1,26 @@
 import psutil
-from plyer import notification
-import numpy as np
+
+# specify height and width of the battery
 HEIGHT = 5 #shoud be odd
 WIDTH = 20
 
-
+# take battery parameters
 b = psutil.sensors_battery()
 percentage = b.percent
 isPlugged = b.power_plugged
-print(b.percent)
-print(b.power_plugged)
-print((percentage*18)//100)
-battery = ''
+percentage = 50
+# initialze battery
+battery = "\n"
 
-# percentage = 10
+
 
 for i in range(HEIGHT):
+
+    # define color filling area according to the battery percentage
     fillArea = (percentage*(WIDTH-2))//100
-    # fillArea = 1
+    
     for j in range(WIDTH):
+        battery += "\033[0m" #starting with resetting colors
         if i == 0:
             if j == 0:
                 battery +=  "\u250C"
@@ -47,7 +49,7 @@ for i in range(HEIGHT):
                     battery += "\u250C\u2518"
                 elif i == (HEIGHT//2):
                     if isPlugged:
-                        battery += " \u2502\u26A1"
+                        battery += " \u2502\u26A1" # show plugging icon
                     else:
                         battery += " \u2502"
                 else:
@@ -60,6 +62,7 @@ for i in range(HEIGHT):
                     if isPlugged:
                         battery += "\033[42m "
                     elif percentage <= 10:
+                        # if battery is low the color turned to red
                         battery += "\033[41m "
                     else:
                         battery += "\033[47m "
@@ -73,18 +76,4 @@ for i in range(HEIGHT):
     battery += "\n"
 
 print(battery)
-# print("\033[0m")
-
-print((7//2)-1)
-# notification.notify(
-#     title = 'test',
-#     message = battery,
-#     app_icon = "image1.ico",
-#     timeout = 10,
-# )
-# print("\u2502  \u2591 \u2500 \u2514 \u2518 \u2510 \u250C")
-
-# print("\u2500\u2510")
-
-# print("\u2510\n\u2518")
-# print("\u26A1")
+print("\033[0m")
