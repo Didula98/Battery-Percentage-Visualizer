@@ -8,12 +8,7 @@ WIDTH = 20
 b = psutil.sensors_battery()
 percentage = b.percent
 isPlugged = b.power_plugged
-percentage = 50
-# initialze battery
 battery = "\n"
-
-
-
 for i in range(HEIGHT):
 
     # define color filling area according to the battery percentage
@@ -49,13 +44,14 @@ for i in range(HEIGHT):
                     battery += "\u250C\u2518"
                 elif i == (HEIGHT//2):
                     if isPlugged:
-                        battery += " \u2502\u26A1" # show plugging icon
+                        battery += f' \u2502\u26A1 {percentage}%'# show plugging icon
                     else:
-                        battery += " \u2502"
+                        battery += f' \u2502 {percentage}%'
                 else:
                     battery += "\u2502"
             elif j == 0:
                 battery += "\u2502"
+
             else:
                 
                 if fillArea != 0:
